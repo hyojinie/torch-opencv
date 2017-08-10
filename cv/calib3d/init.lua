@@ -28,7 +28,7 @@ struct calibrateCameraRetval calibrateCamera(
 struct TensorWrapper calibrationMatrixValues(
 	struct TensorWrapper cameraMatrix,
 	struct SizeWrapper imageSize,
-	double apertureWidth, double apertureHeight);
+	double apertureWidth, double apertureHeight);PP
 
 struct TensorArray composeRT(
 	struct TensorWrapper rvec1, struct TensorWrapper tvec1, struct TensorWrapper rvec2,
@@ -683,7 +683,7 @@ function cv.recoverPose(t)
     local result = C.recoverPose(
 			cv.wrap_tensor(E), cv.wrap_tensor(points1),
 			cv.wrap_tensor(points2), cv.wrap_tensor(R),
-			cv.wrap_tensor(t), focal, Point2d, mask)
+			cv.wrap_tensor(t), focal, Point2d, cv.wrap_tensor(mask))
     return result.val, cv.unwrap_tensors(result.tensors)
 end
 
